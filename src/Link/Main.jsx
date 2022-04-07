@@ -1,49 +1,45 @@
-import { useEffect, useState } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Container } from '@mui/material';
-import getLinks from '../apiRequests/LinkRequests';
+import { Grid, Button } from '@mui/material';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { useState } from 'react';
 
 export default function Main() {
-  const [links, setLinks] = useState([]);
-
-  const setState = async () => {
-    const response = await getLinks();
-    setLinks(response.data);
-  };
-
-  useEffect(() => {
-    setState();
+  const [link, setLink] = useState({
+    base_link: '',
   });
 
+  function handleIdeaChange(event) {
+    const { target: { value, name } } = event;
+    setLink({
+      ...link,
+      [name]: value,
+    });
+  }
+
   return (
-    <Container>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">Base Link</TableCell>
-              <TableCell align="right">Shorted link</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {links.map((link) => (
-              <TableRow
-                key={link.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell align="right">{link.base_link}</TableCell>
-                <TableCell align="right">{link.shorted_link}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Container>
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: '50vh' }}
+    >
+      <Grid item xs={3}>
+        <Box
+          sx={{
+            width: 1000,
+            maxWidth: '100%',
+          }}
+        >
+          <form>
+            <TextField fullWidth label="Insert link" id="base_link" name="base_link" onChange={handleIdeaChange} />
+            <Button fullWidth variant="outlined" color="success" size="large" className="mt-1" type="submit">
+              Short It!
+            </Button>
+          </form>
+        </Box>
+      </Grid>
+    </Grid>
   );
 }
