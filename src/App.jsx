@@ -1,12 +1,13 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import Main from './Link/Main';
-import LinksList from './Link/LinksList';
+import Main from './link/Main';
+import LinksList from './link/LinksList';
 import LinkNavbar from './templates/Navbar';
 import { sessionRequest } from './apiRequests/UserRequests';
 import { loggedInStatus } from './consts/LoggedInConsts';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './auth/Login';
 
 function App() {
   const [state, setState] = useState({
@@ -56,6 +57,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/links" element={<LinksList />} />
+        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
       </Routes>
     </div>
   );
