@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div className="App">
-      <LinkNavbar />
+      <LinkNavbar handleLogout={handleLogout} user={state.user} />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/links" element={<LinksList />} />
