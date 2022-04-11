@@ -8,6 +8,7 @@ import { sessionRequest } from './apiRequests/UserRequests';
 import { loggedInStatus } from './consts/LoggedInConsts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './auth/Login';
+import Registration from './auth/Registration';
 
 function App() {
   const [state, setState] = useState({
@@ -58,6 +59,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/links" element={<LinksList />} />
         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/registration" element={<Registration handleLogin={handleLogin} />} />
       </Routes>
     </div>
   );
