@@ -2,12 +2,15 @@ import { Grid, Button, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { postLink } from '../apiRequests/LinkRequests';
 
 export default function Main() {
   const [link, setLink] = useState({
     base_link: '',
   });
+
+  const navigate = useNavigate();
 
   function handleIdeaChange(event) {
     const { target: { value, name } } = event;
@@ -20,7 +23,10 @@ export default function Main() {
   async function formSubmit(formData) {
     const data = new FormData(formData);
     const response = await postLink(data);
-    console.log(response);
+    const { data: { status } } = response;
+    if (status === 201) {
+      navigate('/links');
+    }
   }
 
   const handleSubmit = (event) => {

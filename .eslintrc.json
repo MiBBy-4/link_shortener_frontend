@@ -23,6 +23,10 @@
         "react/react-in-jsx-scope": "off",
         "no-unused-vars": "off",
         "react/jsx-no-bind": "off",
+        "camelcase": "off",
+        "object-shorthand": "off",
+        "import/prefer-default-export": "off",
+        "arrow-body-style": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     }
 }
