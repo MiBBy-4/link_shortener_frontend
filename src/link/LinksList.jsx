@@ -27,8 +27,9 @@ export default function LinksList() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">Base Link</TableCell>
-              <TableCell align="right">Shorted link</TableCell>
+              <TableCell align="center">Base Link</TableCell>
+              <TableCell align="center">Shorted link</TableCell>
+              <TableCell align="center">Description</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -37,8 +38,9 @@ export default function LinksList() {
                 key={link.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell align="right">{link.base_link}</TableCell>
-                <TableCell align="right">{link.shorted_link}</TableCell>
+                <TableCell align="left">{link.base_link}</TableCell>
+                <TableCell align="left">{link.shorted_link}</TableCell>
+                <TableCell align="left">{link.description}</TableCell>
               </TableRow>
             ))}
           </TableBody>
