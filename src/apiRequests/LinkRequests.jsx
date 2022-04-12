@@ -12,3 +12,7 @@ export function postLink(data) {
     },
   }, { withCredentials: true });
 }
+
+export function getLink(linkId) {
+  return axios.get(`${process.env.REACT_APP_API_URL}api/v1/links/${linkId}`, { withCredentials: true });
+}

@@ -9,6 +9,7 @@ import { loggedInStatus } from './consts/LoggedInConsts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './auth/Login';
 import Registration from './auth/Registration';
+import LinkShow from './link/LinkShow';
 
 function App() {
   const [state, setState] = useState({
@@ -60,6 +61,10 @@ function App() {
         <Route path="/links" element={<LinksList />} />
         <Route path="/login" element={<Login handleLogin={handleLogin} />} />
         <Route path="/registration" element={<Registration handleLogin={handleLogin} />} />
+        <Route
+          path="/links/:linkId"
+          element={<LinkShow />}
+        />
       </Routes>
     </div>
   );

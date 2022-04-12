@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -30,6 +31,7 @@ export default function LinksList() {
               <TableCell align="center">Base Link</TableCell>
               <TableCell align="center">Shorted link</TableCell>
               <TableCell align="center">Description</TableCell>
+              <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -41,6 +43,7 @@ export default function LinksList() {
                 <TableCell align="left">{link.base_link}</TableCell>
                 <TableCell align="left">{link.shorted_link}</TableCell>
                 <TableCell align="left">{link.description}</TableCell>
+                <TableCell align="left"><Link to={`/links/${link.id}`}>View</Link></TableCell>
               </TableRow>
             ))}
           </TableBody>
