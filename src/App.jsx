@@ -1,6 +1,7 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { Navigate } from 'react-router';
 import Main from './link/Main';
 import LinksList from './link/LinksList';
 import LinkNavbar from './templates/Navbar';
@@ -38,6 +39,7 @@ function App() {
   useEffect(() => {
     checkLoginStatus();
   });
+
   function handleLogin(data) {
     dispatch({ type: loggedInStatus('loggedIn') });
     setState({
@@ -59,13 +61,22 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/links" element={<LinksList />} />
-        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-        <Route path="/registration" element={<Registration handleLogin={handleLogin} />} />
         <Route
           path="/links/:linkId"
-          element={<LinkShow />}
+          element={<LinkShow user={state.user} />}
         />
       </Routes>
+      { isLoggedIn ? (
+        <Routes>
+          <Route path="/login" element={<Navigate to="/" />} />
+          <Route path="/registration" element={<Navigate to="/" />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/registration" element={<Registration handleLogin={handleLogin} />} />
+        </Routes>
+      ) }
     </div>
   );
 }
