@@ -12,13 +12,13 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { postLink } from '../apiRequests/LinkRequests';
-import TagsInput from '../templates/TagsInput';
 
 export default function Main() {
   const [link, setLink] = useState({
     base_link: '',
     description: '',
   });
+  const [tags, setTags] = useState([]);
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((status) => status.isLoggedIn);
@@ -34,7 +34,7 @@ export default function Main() {
 
   async function formSubmit(formData) {
     const data = new FormData(formData);
-    const response = await postLink(data);
+    const response = await postLink(data, tags);
     const { data: { status } } = response;
     if (status === 201) {
       navigate('/links');
@@ -45,6 +45,18 @@ export default function Main() {
     formSubmit(event.target);
     event.preventDefault();
   };
+
+  function handleKeyDown(event) {
+    if (event.key !== 'Enter') return;
+    const { target: { value } } = event;
+    if (value.trim() === '') return;
+    setTags([...tags, value]);
+    event.target.value = '';
+  }
+
+  function removeTag(index) {
+    setTags(tags.filter((tag, i) => i !== index));
+  }
 
   return (
     <div>
@@ -82,7 +94,15 @@ export default function Main() {
                 <Form.Control as="textarea" rows={3} placeholder="Description of Link" name="description" onChange={handleIdeaChange} />
               </Form.Group>
               <Form.Group className="mt-1">
-                <TagsInput />
+                <div className="tags-input-container">
+                  { tags.map((tag, index) => (
+                    <div className="tags-item" key={index}>
+                      <span className="text">{tag}</span>
+                      <span className="close" onClick={() => removeTag(index)}>&times;</span>
+                    </div>
+                  ))}
+                  <input type="text" onKeyDown={handleKeyDown} placeholder="Type something" className="text-input" />
+                </div>
               </Form.Group>
               { isLoggedIn ? (
                 <Button fullWidth variant="outlined" color="success" size="large" className="mt-1" type="submit">

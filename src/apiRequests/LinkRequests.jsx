@@ -4,12 +4,13 @@ export function getLinks() {
   return axios.get(`${process.env.REACT_APP_API_URL}api/v1/links`, { withCredentials: true });
 }
 
-export function postLink(data) {
+export function postLink(data, tags) {
   return axios.post(`${process.env.REACT_APP_API_URL}api/v1/links`, {
     link: {
       base_link: data.get('base_link'),
       description: data.get('description'),
     },
+    tag: tags,
   }, { withCredentials: true });
 }
 

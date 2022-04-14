@@ -29,6 +29,15 @@ export default function LinkShow(props) {
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
           { link.description }
+          <div className="d-flex justify-content-center">
+            <div className="tags-input-container w-25 mt-2 d-flex justify-content-center">
+              { link.tags.map((tag, index) => (
+                <div className="tags-item" key={index}>
+                  <span className="text">{tag.tag_name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </Card.Subtitle>
         <Card.Body>
           <ListGroup className="list-group=flush">

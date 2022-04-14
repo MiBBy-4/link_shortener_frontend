@@ -25,12 +25,13 @@ export default function LinksList() {
   return (
     <Container>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 700 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell align="center">Base Link</TableCell>
               <TableCell align="center">Shorted link</TableCell>
               <TableCell align="center">Description</TableCell>
+              <TableCell align="center">Tags</TableCell>
               <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
@@ -43,6 +44,11 @@ export default function LinksList() {
                 <TableCell align="left">{link.base_link}</TableCell>
                 <TableCell align="left">{link.shorted_link}</TableCell>
                 <TableCell align="left">{link.description}</TableCell>
+                <TableCell align="left">
+                  {link.tags.map((tag) => (
+                    <span key={tag.id}>{`${tag.tag_name} `}</span>
+                  ))}
+                </TableCell>
                 <TableCell align="left"><Link to={`/links/${link.id}`}>View</Link></TableCell>
               </TableRow>
             ))}
