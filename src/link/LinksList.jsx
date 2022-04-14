@@ -41,8 +41,12 @@ export default function LinksList() {
                 key={link.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell align="left">{link.base_link}</TableCell>
-                <TableCell align="left">{link.shorted_link}</TableCell>
+                <TableCell align="left">
+                  <a href={link.base_link}>{link.base_link}</a>
+                </TableCell>
+                <TableCell align="left">
+                  <a href={`${process.env.REACT_APP_API_URL}${link.shorted_link}`}>{link.shorted_link}</a>
+                </TableCell>
                 <TableCell align="left">{link.description}</TableCell>
                 <TableCell align="left">
                   {link.tags.map((tag) => (

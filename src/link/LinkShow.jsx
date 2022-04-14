@@ -10,11 +10,14 @@ import { getLink } from '../apiRequests/LinkRequests';
 
 export default function LinkShow(props) {
   const [link, setLink] = useState({});
+  const [tags, setTags] = useState([]);
   const { linkId } = useParams();
   const { user } = props;
   const setState = async () => {
     const response = await getLink(linkId);
+    const { data } = response;
     setLink(response.data);
+    setTags(data.tags);
   };
 
   useEffect(() => {
@@ -31,7 +34,7 @@ export default function LinkShow(props) {
           { link.description }
           <div className="d-flex justify-content-center">
             <div className="tags-input-container w-25 mt-2 d-flex justify-content-center">
-              { link.tags.map((tag, index) => (
+              { tags.map((tag, index) => (
                 <div className="tags-item" key={index}>
                   <span className="text">{tag.tag_name}</span>
                 </div>
@@ -43,11 +46,11 @@ export default function LinkShow(props) {
           <ListGroup className="list-group=flush">
             <ListGroupItem>
               <b>Base link: </b>
-              {link.base_link}
+              <a href={link.base_link}>{link.base_link}</a>
             </ListGroupItem>
             <ListGroupItem>
               <b>Shorted link: </b>
-              {link.shorted_link}
+              <a href={`${process.env.REACT_APP_API_URL}${link.shorted_link}`}>{link.shorted_link}</a>
             </ListGroupItem>
           </ListGroup>
         </Card.Body>
