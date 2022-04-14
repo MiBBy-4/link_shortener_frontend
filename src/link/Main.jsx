@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { postLink } from '../apiRequests/LinkRequests';
+import TagsInput from '../templates/TagsInput';
 
 export default function Main() {
   const [link, setLink] = useState({
@@ -79,6 +80,9 @@ export default function Main() {
               <TextField fullWidth label="Insert link" id="base_link" name="base_link" onChange={handleIdeaChange} />
               <Form.Group className="mt-1">
                 <Form.Control as="textarea" rows={3} placeholder="Description of Link" name="description" onChange={handleIdeaChange} />
+              </Form.Group>
+              <Form.Group className="mt-1">
+                <TagsInput />
               </Form.Group>
               { isLoggedIn ? (
                 <Button fullWidth variant="outlined" color="success" size="large" className="mt-1" type="submit">

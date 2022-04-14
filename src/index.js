@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import './index.css';
 import App from './App';
+import './style.css';
 import reportWebVitals from './reportWebVitals';
 import { loggedInStatus } from './consts/LoggedInConsts';
 
