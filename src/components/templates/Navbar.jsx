@@ -4,7 +4,7 @@ import {
   Nav,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutRequest } from '../apiRequests/UserRequests';
+import { logoutRequest } from '../../requests/apiRequests/UserRequests';
 
 export default function LinkNavbar(props) {
   const dispatch = useDispatch();

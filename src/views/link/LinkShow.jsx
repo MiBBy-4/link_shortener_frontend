@@ -6,7 +6,7 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'react-bootstrap';
-import { getLink } from '../apiRequests/LinkRequests';
+import { getLink } from '../../requests/apiRequests/LinkRequests';
 
 export default function LinkShow(props) {
   const [link, setLink] = useState({});

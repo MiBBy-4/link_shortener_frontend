@@ -2,15 +2,15 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router';
-import Main from './link/Main';
-import LinksList from './link/LinksList';
-import LinkNavbar from './templates/Navbar';
-import { sessionRequest } from './apiRequests/UserRequests';
-import { loggedInStatus } from './consts/LoggedInConsts';
+import Main from './views/link/Main';
+import LinksList from './views/link/LinksList';
+import LinkNavbar from './components/templates/Navbar';
+import { sessionRequest } from './requests/apiRequests/UserRequests';
+import { loggedInStatus } from './components/consts/LoggedInConsts';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './auth/Login';
-import Registration from './auth/Registration';
-import LinkShow from './link/LinkShow';
+import Login from './views/auth/Login';
+import Registration from './views/auth/Registration';
+import LinkShow from './views/link/LinkShow';
 
 function App() {
   const [state, setState] = useState({

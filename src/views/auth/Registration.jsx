@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { Container, Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
-import { registrationRequest } from '../apiRequests/UserRequests';
+import { registrationRequest } from '../../requests/apiRequests/UserRequests';
 
 export default function Registration(props) {
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Typography } from '@mui/material';
 import { Form, Button, Container } from 'react-bootstrap';
-import { loginRequest } from '../apiRequests/UserRequests';
+import { loginRequest } from '../../requests/apiRequests/UserRequests';
 
 export default function Login(props) {
   const [state, setState] = useState({
