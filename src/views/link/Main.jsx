@@ -20,7 +20,6 @@ export default function Main() {
   });
   const [tags, setTags] = useState([]);
 
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector((status) => status.isLoggedIn);
   const navigate = useNavigate();
 

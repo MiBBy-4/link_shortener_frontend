@@ -16,9 +16,9 @@ export default function Login(props) {
     props.handleLogin(data);
   }
 
-  async function formSubmit(event) {
+  async function formSubmit() {
     const response = await loginRequest(state.email, state.password);
-    const { data: { status, errors } } = response;
+    const { data: { status } } = response;
     if (status === 201) {
       handleSuccessfulAuth(response.data);
     }

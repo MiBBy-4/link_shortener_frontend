@@ -23,7 +23,7 @@ export default function Registration(props) {
       state.password,
       state.password_confirmation,
     );
-    const { data: { status, errors } } = response;
+    const { data: { status } } = response;
     if (status === 201) {
       handleSuccessfulAuth(response.data);
     }
