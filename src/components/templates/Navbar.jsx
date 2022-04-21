@@ -1,8 +1,9 @@
-import {
-  Navbar,
-  Container,
-  Nav,
-} from 'react-bootstrap';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutRequest } from '../../requests/apiRequests/UserRequests';
 
@@ -18,26 +19,28 @@ export default function LinkNavbar(props) {
   }
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand href="/">Home</Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/links">List of Links</Nav.Link>
-          </Nav>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" className="bg-dark">
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Links
+          </Typography>
           { isLoggedIn ? (
-            <Nav>
-              <Nav.Link onClick={() => handleLogoutClick()}>Logout</Nav.Link>
-            </Nav>
+            <Button onClick={() => handleLogoutClick()} color="inherit">
+              Logout
+            </Button>
           ) : (
-            <Nav>
-              <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link href="/registration">Registration</Nav.Link>
-            </Nav>
+            <Box>
+              <Link href="/login" underline="hover" color="inherit" className="mx-2">
+                Login
+              </Link>
+              <Link href="/registration" underline="hover" color="inherit">
+                Registration
+              </Link>
+            </Box>
           )}
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }
