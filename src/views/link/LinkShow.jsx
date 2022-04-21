@@ -57,12 +57,11 @@ export default function LinkShow(props) {
         <Card.Footer className="text-center">
           <b>Created At:</b>
           {` ${link.created_at} `}
-          {link.user_id === user.id ? (
+          {link.user_id === user.id &&
             <div>
               <b>views: </b>
               {` ${link.views} `}
-            </div>
-          ) : (null)}
+            </div> }
         </Card.Footer>
       </Card>
     </Container>

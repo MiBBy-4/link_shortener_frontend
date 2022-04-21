@@ -80,13 +80,12 @@ export default function Main() {
               {' '}
               <a href="/links">table</a>
             </Typography>
-            { isLoggedIn ? (null) : (
+            { !isLoggedIn &&
               <Alert severity="warning" className="my-3">
                 <AlertTitle>Not logged in!</AlertTitle>
                 To short your link you should
                 <strong> log in</strong>
-              </Alert>
-            ) }
+              </Alert> }
             <form onSubmit={handleSubmit}>
               <TextField fullWidth label="Insert link" id="base_link" name="base_link" onChange={handleIdeaChange} />
               <Form.Group className="mt-1">
@@ -103,11 +102,10 @@ export default function Main() {
                   <input type="text" onKeyDown={handleKeyDown} placeholder="Type something" className="text-input" />
                 </div>
               </Form.Group>
-              { isLoggedIn ? (
+              { isLoggedIn &&
                 <Button fullWidth variant="outlined" color="success" size="large" className="mt-1" type="submit">
                   Short It!
-                </Button>
-              ) : (null) }
+                </Button> }
             </form>
           </Box>
         </Grid>
