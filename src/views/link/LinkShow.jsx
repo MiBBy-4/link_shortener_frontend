@@ -4,7 +4,6 @@ import {
   Card,
   CardActions,
   CardContent,
-  Button,
   Typography,
 } from '@mui/material';
 import { useParams } from 'react-router';
@@ -50,15 +49,17 @@ export default function LinkShow(props) {
             </div> }
         </Typography>
       </CardContent>
-      <div className="d-flex justify-content-center">
-        <div className="tags-input-container w-25 mt-2 d-flex justify-content-center">
-          { tags.map((tag, index) => (
-            <div className="tags-item" key={index}>
-              <span className="text">{tag.tag_name}</span>
-            </div>
-          ))}
+      <CardActions>
+        <div className="d-flex justify-content-center">
+          <div className="tags-input-container w-25 mt-2 d-flex justify-content-center">
+            { tags.map((tag, index) => (
+              <div className="tags-item" key={index}>
+                <span className="text">{tag.tag_name}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </CardActions>
     </Card>
   );
 }
