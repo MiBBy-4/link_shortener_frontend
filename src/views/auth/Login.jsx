@@ -1,7 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { Typography } from '@mui/material';
-import { Form, Button, Container } from 'react-bootstrap';
+import {
+  Typography,
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  FormHelperText,
+  Input,
+  Grid,
+} from '@mui/material';
 import { loginRequest } from '../../requests/apiRequests/UserRequests';
 
 export default function Login(props) {
@@ -38,24 +46,36 @@ export default function Login(props) {
   };
 
   return (
-    <Container>
-      <Typography variant="h1" className="text-center">
-        Login
-      </Typography>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" name="email" onChange={handleChange} />
-          <Form.Text className="text-muted">
-            We&apos;ll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Enter your password" name="password" onChange={handleChange} />
-        </Form.Group>
-        <Button variant="primary" type="submit">Login</Button>
-      </Form>
-    </Container>
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: '50vh' }}
+    >
+      <Grid item xs={3}>
+        <Box
+          sx={{
+            width: 1000,
+            maxWidth: '100%',
+          }}
+        >
+          <Typography variant="h1" className="text-center">
+            Login
+          </Typography>
+          <form onSubmit={handleSubmit}>
+            <FormControl fullWidth>
+              <Input id="email" aria-describedby="my-helper-text" name="email" placeholder="Email" onChange={handleChange} />
+              <FormHelperText id="email">We&apos;ll never share your email.</FormHelperText>
+            </FormControl>
+            <FormControl fullWidth>
+              <Input id="password" aria-describedby="password" type="password" name="password" placeholder="Password" className="mt-2" onChange={handleChange} />
+            </FormControl>
+            <Button variant="primary" type="submit">Login</Button>
+          </form>
+        </Box>
+      </Grid>
+    </Grid>
   );
 }
