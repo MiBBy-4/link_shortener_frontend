@@ -31,13 +31,13 @@ export default function Main() {
     });
   }
 
-  async function formSubmit(formData) {
+  function handleSuccessfulPost() {
+    navigate('/links');
+  }
+
+  function formSubmit(formData) {
     const data = new FormData(formData);
-    const response = await postLink(data, tags);
-    const { data: { status } } = response;
-    if (status === 201) {
-      navigate('/links');
-    }
+    postLink(data, tags, handleSuccessfulPost);
   }
 
   function handleSubmit(event) {
