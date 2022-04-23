@@ -1,9 +1,12 @@
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
+import {
+  AppBar,
+  Button,
+  Box,
+  Toolbar,
+  Typography,
+  Link,
+  MenuItem,
+} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutRequest } from '../../requests/apiRequests/UserRequests';
 
@@ -23,7 +26,8 @@ export default function LinkNavbar(props) {
       <AppBar position="static" className="bg-dark">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Links
+            <Link href="/" underline="none" color="inherit">Links</Link>
+            <Link href="/links" className="mx-4" underline="none" color="inherit">List of links</Link>
           </Typography>
           { isLoggedIn ? (
             <Button onClick={() => handleLogoutClick()} color="inherit">
