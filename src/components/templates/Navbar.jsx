@@ -5,20 +5,15 @@ import {
   Toolbar,
   Typography,
   Link,
-  MenuItem,
 } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { logoutRequest } from '../../requests/apiRequests/UserRequests';
 
 export default function LinkNavbar(props) {
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector((status) => status.isLoggedIn);
 
-  async function handleLogoutClick() {
-    const response = await logoutRequest();
-    if (response.data.logged_out) {
-      props.handleLogout();
-    }
+  function handleLogoutClick() {
+    logoutRequest(props.handleLogout());
   }
 
   return (

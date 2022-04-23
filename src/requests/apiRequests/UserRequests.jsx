@@ -4,8 +4,12 @@ export function sessionRequest() {
   return axios.get(`${process.env.REACT_APP_API_URL}users/logged_in`, { withCredentials: true });
 }
 
-export function logoutRequest() {
-  return axios.delete(`${process.env.REACT_APP_API_URL}users/logout`, { withCredentials: true });
+export async function logoutRequest(handleLogout) {
+  const response = await axios.delete(`${process.env.REACT_APP_API_URL}users/logout`, { withCredentials: true });
+
+  if (response.data.logged_out) {
+    handleLogout();
+  }
 }
 
 export async function loginRequest(email, password, handleSuccessfulAuth) {
