@@ -24,16 +24,13 @@ export default function Registration(props) {
     navigate('/');
   }
 
-  async function formSubmit() {
-    const response = await registrationRequest(
+  function formSubmit() {
+    registrationRequest(
       state.email,
       state.password,
       state.password_confirmation,
+      handleSuccessfulAuth,
     );
-    const { data: { status } } = response;
-    if (status === 201) {
-      handleSuccessfulAuth(response.data);
-    }
   }
 
   function handleChange(event) {

@@ -86,39 +86,41 @@ export default function Main() {
                 To short your link you should
                 <strong> log in</strong>
               </Alert> }
-            <FormControl fullWidth onSubmit={handleSubmit}>
-              <TextField
-                className="mb-3"
-                fullWidth
-                label="Insert link"
-                id="base_link"
-                name="base_link"
-                onChange={handleIdeaChange}
-              />
-              <TextField
-                className="mb-3"
-                fullWidth
-                label="Insert description"
-                multiline
-                maxRows={4}
-                id="description"
-                name="description"
-                onChange={handleIdeaChange}
-              />
-              <div className="tags-input-container mb-3">
-                { tags.map((tag, index) => (
-                  <div className="tags-item" key={index}>
-                    <span className="text">{tag}</span>
-                    <span className="close" onClick={() => removeTag(index)}>&times;</span>
-                  </div>
-                ))}
-                <input type="text" onKeyDown={handleKeyDown} placeholder="Type something" className="text-input" />
-              </div>
-              { isLoggedIn &&
-                <Button fullWidth variant="outlined" color="success" size="large" type="submit">
-                  Short It!
-                </Button> }
-            </FormControl>
+            <form onSubmit={handleSubmit}>
+              <FormControl fullWidth>
+                <TextField
+                  className="mb-3"
+                  fullWidth
+                  label="Insert link"
+                  id="base_link"
+                  name="base_link"
+                  onChange={handleIdeaChange}
+                />
+                <TextField
+                  className="mb-3"
+                  fullWidth
+                  label="Insert description"
+                  multiline
+                  maxRows={4}
+                  id="description"
+                  name="description"
+                  onChange={handleIdeaChange}
+                />
+                <div className="tags-input-container mb-3">
+                  { tags.map((tag, index) => (
+                    <div className="tags-item" key={index}>
+                      <span className="text">{tag}</span>
+                      <span className="close" onClick={() => removeTag(index)}>&times;</span>
+                    </div>
+                  ))}
+                  <input type="text" onKeyDown={handleKeyDown} placeholder="Type something" className="text-input" />
+                </div>
+                { isLoggedIn &&
+                  <Button fullWidth variant="outlined" color="success" size="large" type="submit">
+                    Short It!
+                  </Button> }
+              </FormControl>
+            </form>
           </Box>
         </Grid>
       </Grid>

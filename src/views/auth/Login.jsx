@@ -23,12 +23,8 @@ export default function Login(props) {
     props.handleLogin(data);
   }
 
-  async function formSubmit() {
-    const response = await loginRequest(state.email, state.password);
-    const { data: { status } } = response;
-    if (status === 201) {
-      handleSuccessfulAuth(response.data);
-    }
+  function formSubmit() {
+    loginRequest(state.email, state.password, handleSuccessfulAuth);
   }
 
   function handleChange(event) {

@@ -10,7 +10,7 @@ export function postLink(data, tags) {
       base_link: data.get('base_link'),
       description: data.get('description'),
     },
-    tag: tags,
+    tags: tags,
   }, { withCredentials: true });
 }
 
