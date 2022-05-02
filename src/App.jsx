@@ -13,7 +13,7 @@ import Registration from './views/auth/Registration';
 import LinkShow from './views/link/LinkShow';
 import { setUser, unSetUser } from './requests/stores/actions';
 
-function App(props) {
+function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((status) => status.status.isLoggedIn);
   const navigate = useNavigate();

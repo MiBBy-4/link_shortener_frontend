@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
-  Box,
   Card,
   CardActions,
   CardContent,
@@ -15,16 +13,12 @@ function LinkShow(props) {
   const [link, setLink] = useState({});
   const [tags, setTags] = useState([]);
   const { linkId } = useParams();
-  const { user } = props;
+  const user = useSelector((state) => state.user);
   const setState = async () => {
     const response = await getLink(linkId);
     const { data } = response;
     setLink(response.data);
     setTags(data.tags);
-  };
-
-  const mapStateToProps = (state) => {
-    return { user: state.user };
   };
 
   useEffect(() => {
