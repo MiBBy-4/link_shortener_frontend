@@ -9,7 +9,7 @@ import {
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { postLink } from '../../requests/apiRequests/LinkRequests';
 
@@ -20,7 +20,7 @@ export default function Main() {
   });
   const [tags, setTags] = useState([]);
 
-  const isLoggedIn = useSelector((status) => status.isLoggedIn);
+  const isLoggedIn = useSelector((status) => status.status.isLoggedIn);
   const navigate = useNavigate();
 
   function handleIdeaChange(event) {

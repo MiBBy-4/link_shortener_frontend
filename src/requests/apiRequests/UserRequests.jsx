@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-export function sessionRequest() {
-  return axios.get(`${process.env.REACT_APP_API_URL}users/logged_in`, { withCredentials: true });
+export async function sessionRequest(dispatchData) {
+  const response = await axios.get(`${process.env.REACT_APP_API_URL}users/logged_in`, { withCredentials: true });
+  dispatchData(response);
 }
 
 export async function logoutRequest(handleLogout) {
