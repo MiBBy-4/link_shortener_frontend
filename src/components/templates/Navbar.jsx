@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { logoutRequest } from '../../requests/apiRequests/UserRequests';
 
 export default function LinkNavbar(props) {
-  const isLoggedIn = useSelector((status) => status.isLoggedIn);
+  const isLoggedIn = useSelector((status) => status.status.isLoggedIn);
 
   function handleLogoutClick() {
     logoutRequest(props.handleLogout());

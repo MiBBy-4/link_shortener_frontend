@@ -11,28 +11,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './views/auth/Login';
 import Registration from './views/auth/Registration';
 import LinkShow from './views/link/LinkShow';
+import { setUser, unSetUser } from './requests/stores/actions';
 
 function App() {
-  const [state, setState] = useState({
-    user: {},
-  });
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((status) => status.isLoggedIn);
+  const isLoggedIn = useSelector((status) => status.status.isLoggedIn);
   const navigate = useNavigate();
+  console.log(useSelector((status) => status.user));
 
   async function checkLoginStatus() {
     const response = await sessionRequest();
     const { data: { user, logged_in } } = response;
     if (logged_in && !isLoggedIn) {
-      dispatch({ type: loggedInStatus('loggedIn') });
-      setState({
-        user: user,
-      });
+      dispatch({ type: loggedInStatus('loggedIn') }, user);
+      dispatch(setUser(user));
     } else if (!logged_in && isLoggedIn) {
       dispatch({ type: loggedInStatus('notLoggedIn') });
-      setState({
-        user: {},
-      });
+      dispatch(unSetUser());
     }
   }
 
@@ -42,28 +37,24 @@ function App() {
 
   function handleLogin(data) {
     dispatch({ type: loggedInStatus('loggedIn') });
-    setState({
-      user: data.user,
-    });
+    dispatch(setUser(data.user));
   }
 
   function handleLogout() {
     dispatch({ type: loggedInStatus('notLoggedIn') });
-    setState({
-      user: {},
-    });
+    dispatch(unSetUser());
     navigate('/');
   }
 
   return (
     <div className="App">
-      <LinkNavbar handleLogout={handleLogout} user={state.user} />
+      <LinkNavbar handleLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/links" element={<LinksList />} />
         <Route
           path="/links/:linkId"
-          element={<LinkShow user={state.user} />}
+          element={<LinkShow />}
         />
       </Routes>
       { isLoggedIn ? (

@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import {
   Box,
   Card,
@@ -9,7 +11,7 @@ import {
 import { useParams } from 'react-router';
 import { getLink } from '../../requests/apiRequests/LinkRequests';
 
-export default function LinkShow(props) {
+function LinkShow(props) {
   const [link, setLink] = useState({});
   const [tags, setTags] = useState([]);
   const { linkId } = useParams();
@@ -19,6 +21,10 @@ export default function LinkShow(props) {
     const { data } = response;
     setLink(response.data);
     setTags(data.tags);
+  };
+
+  const mapStateToProps = (state) => {
+    return { user: state.user };
   };
 
   useEffect(() => {
@@ -63,3 +69,5 @@ export default function LinkShow(props) {
     </Card>
   );
 }
+
+export default LinkShow;
