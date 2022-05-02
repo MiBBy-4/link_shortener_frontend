@@ -17,7 +17,6 @@ function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((status) => status.status.isLoggedIn);
   const navigate = useNavigate();
-  console.log(useSelector((status) => status.user));
 
   async function checkLoginStatus() {
     const response = await sessionRequest();
