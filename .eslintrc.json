@@ -33,6 +33,10 @@
         "react/no-array-index-key": "off",
         "jsx-a11y/click-events-have-key-events": "off",
         "jsx-a11y/no-static-element-interactions": "off",
+        "operator-linebreak" : "off",
+        "react/jsx-wrap-multilines" : "off",
+        "max-len": "off",
+        "default-param-last": "off",
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     }
 }

@@ -2,28 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import './index.css';
 import App from './App';
 import './style.css';
 import reportWebVitals from './reportWebVitals';
-import { loggedInStatus } from './consts/LoggedInConsts';
-
-const defaultStatus = {
-  isLoggedIn: false,
-};
-
-const reducer = (status = defaultStatus, action = loggedInStatus('notLoggedIn')) => {
-  switch (action.type) {
-    case 'setLoggedIn':
-      return { ...status, isLoggedIn: true };
-    case 'unSetLoggedIn':
-      return { ...status, isLoggedIn: false };
-    default:
-      return status;
-  }
-};
-const store = createStore(reducer);
+import { store } from './requests/stores/store';
 
 ReactDOM.render(
   <React.StrictMode>
